@@ -1,0 +1,142 @@
+[
+    {
+        "name": "avdBuiltInScript_disableStorageSense",
+        "runElevated": true,
+        "runAsSystem": true,
+        "scriptUri": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/CustomImageTemplateScripts/CustomImageTemplateScripts_2023-11-20/DisableStorageSense.ps1",
+        "type": "PowerShell"
+    },
+    {
+        "destination": "C:\\AVDImage\\windowsOptimization.ps1",
+        "name": "avdBuiltInScript_windowsOptimization",
+        "sourceUri": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/CustomImageTemplateScripts/CustomImageTemplateScripts_2023-11-20/WindowsOptimization.ps1",
+        "type": "File"
+    },
+    {
+        "inline": [
+            "C:\\AVDImage\\windowsOptimization.ps1 -Optimizations \"WindowsMediaPlayer\",\"ScheduledTasks\",\"DefaultUserSettings\",\"Autologgers\",\"Services\",\"NetworkOptimizations\",\"LGPO\",\"DiskCleanup\",\"RemoveLegacyIE\",\"RemoveOneDrive\""
+        ],
+        "name": "avdBuiltInScript_windowsOptimization-parameter",
+        "runAsSystem": true,
+        "runElevated": true,
+        "type": "PowerShell"
+    },
+    {
+        "name": "avdBuiltInScript_removeAppxPackages",
+        "type": "File",
+        "destination": "C:\\AVDImage\\removeAppxPackages.ps1",
+        "sourceUri": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/CustomImageTemplateScripts/CustomImageTemplateScripts_2023-11-20/RemoveAppxPackages.ps1"
+    },
+    {
+        "name": "avdBuiltInScript_removeAppxPackages-parameter",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\AVDImage\\removeAppxPackages.ps1 -AppxPackages \"Clipchamp.Clipchamp\",\"Microsoft.BingNews\",\"Microsoft.BingWeather\",\"Microsoft.GamingApp\",\"Microsoft.GetHelp\",\"Microsoft.Getstarted\",\"Microsoft.MicrosoftOfficeHub\",\"Microsoft.Office.OneNote\",\"Microsoft.MicrosoftSolitaireCollection\",\"Microsoft.MicrosoftStickyNotes\",\"Microsoft.MSPaint\",\"Microsoft.People\",\"Microsoft.PowerAutomateDesktop\",\"Microsoft.ScreenSketch\",\"Microsoft.SkypeApp\",\"Microsoft.Todos\",\"Microsoft.Windows.Photos\",\"Microsoft.WindowsAlarms\",\"Microsoft.WindowsCalculator\",\"Microsoft.WindowsCamera\",\"Microsoft.windowscommunicationsapps\",\"Microsoft.WindowsFeedbackHub\",\"Microsoft.WindowsMaps\",\"Microsoft.WindowsSoundRecorder\",\"Microsoft.Xbox.TCUI\",\"Microsoft.XboxGameOverlay\",\"Microsoft.XboxGamingOverlay\",\"Microsoft.XboxIdentityProvider\",\"Microsoft.XboxSpeechToTextOverlay\",\"Microsoft.YourPhone\",\"Microsoft.ZuneMusic\",\"Microsoft.ZuneVideo\",\"Microsoft.XboxApp\""
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "avdBuiltInScript_disableAutoUpdates",
+        "runElevated": true,
+        "runAsSystem": true,
+        "scriptUri": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/CustomImageTemplateScripts/CustomImageTemplateScripts_2023-11-20/DisableAutoUpdates.ps1",
+        "type": "PowerShell"
+    },
+    {
+        "name": "avdBuiltInScript_windowsUpdate",
+        "type": "WindowsUpdate"
+    },
+    {
+        "name": "avdBuiltInScript_windowsUpdate-windowsRestart",
+        "type": "WindowsRestart"
+    },
+    {
+        "type": "PowerShell",
+        "name": "imageFactory_install_AzCopy",
+        "scriptUri": "https://ispmgmtstassets.blob.core.windows.net/scripts/Install-AzCopy.ps1",
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "imageFactory_downloadInstallerScript",
+        "type": "File",
+        "destination": "C:\\ImageBuilder\\Install-Application.ps1",
+        "sourceUri": "https://ispmgmtstassets.blob.core.windows.net/scripts/Install-Application.ps1"
+    },
+    {
+        "name": "imageFactory_download_Manifests",
+        "runElevated": true,
+        "runAsSystem": true,
+        "scriptUri": "https://ispmgmtstassets.blob.core.windows.net/scripts/Get-Manifests.ps1",
+        "type": "PowerShell"
+    },
+    {
+        "name": "imageFactory_install_AzCLI",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\ImageBuilder\\Install-Application.ps1 -Manifest C:\\ImageBuilder\\manifest-azcli.json"
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "imageFactory_install_Firefox",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\ImageBuilder\\Install-Application.ps1 -Manifest C:\\ImageBuilder\\manifest-firefox.json"
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "imageFactory_install_LibreOffice",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\ImageBuilder\\Install-Application.ps1 -Manifest C:\\ImageBuilder\\manifest-libreoffice.json"
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "imageFactory_install_NotepadPlus",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\ImageBuilder\\Install-Application.ps1 -Manifest C:\\ImageBuilder\\manifest-notepadplus.json"
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "imageFactory_install_PuTTy",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\ImageBuilder\\Install-Application.ps1 -Manifest C:\\ImageBuilder\\manifest-putty.json"
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "imageFactory_install_Wireshark",
+        "type": "PowerShell",
+        "inline": [
+            "C:\\ImageBuilder\\Install-Application.ps1 -Manifest C:\\ImageBuilder\\manifest-wireshark.json"
+        ],
+        "runAsSystem": true,
+        "runElevated": true
+    },
+    {
+        "name": "avdBuiltInScript_windowsRestart",
+        "type": "WindowsRestart",
+        "restartCheckCommand": "",
+        "restartCommand": "",
+        "restartTimeout": "5m"
+    },
+    {
+        "name": "avdBuiltInScript_adminSysPrep",
+        "runAsSystem": true,
+        "runElevated": true,
+        "scriptUri": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/CustomImageTemplateScripts/CustomImageTemplateScripts_2023-11-20/AdminSysPrep.ps1",
+        "type": "PowerShell"
+    }
+]

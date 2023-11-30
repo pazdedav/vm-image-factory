@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "https://imgfactoryassets.blob.core.windows.net/archives/putty-64bit-0.79-installer.msi",
+    "packageLocalPath": "C:\\ImageBuilder\\putty-64bit-0.79-installer.msi",
+    "zipped": false,
+    "archiveLocalPath": "",
+    "appName": "PuTTY",
+    "installationPath": "C:\\Program Files\\PuTTY\\putty.exe",
+    "appType": "msi",
+    "arguments": "/I C:\\ImageBuilder\\putty-64bit-0.79-installer.msi /qb! /l*v C:\\ImageBuilder\\PuTTy_0_79.log"
+}

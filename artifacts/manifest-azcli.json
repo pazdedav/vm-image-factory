@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "https://imgfactoryassets.blob.core.windows.net/archives/azure-cli-2.54.0-x64.msi",
+    "packageLocalPath": "C:\\ImageBuilder\\azure-cli-2.54.0-x64.msi",
+    "zipped": false,
+    "archiveLocalPath": "",
+    "appName": "Azure CLI",
+    "installationPath": "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\",
+    "appType": "msi",
+    "arguments": "/I C:\\ImageBuilder\\azure-cli-2.54.0-x64.msi /quiet"
+}

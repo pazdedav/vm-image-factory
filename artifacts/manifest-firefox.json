@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "https://imgfactoryassets.blob.core.windows.net/archives/Firefox120.0.zip",
+    "packageLocalPath": "C:\\ImageBuilder\\Firefox Setup 120.0.msi",
+    "zipped": true,
+    "archiveLocalPath": "C:\\ImageBuilder\\Firefox120.0.zip",
+    "appName": "Firefox",
+    "installationPath": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+    "appType": "msi",
+    "arguments": "/I \"C:\\ImageBuilder\\Firefox Setup 120.0.msi\" DESKTOP_SHORTCUT=true INSTALL_MAINTENANCE_SERVICE=false /quiet"
+}

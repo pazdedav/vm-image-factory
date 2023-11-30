@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "https://imgfactoryassets.blob.core.windows.net/archives/LibreOffice_7.6.3_Win_x86-64.msi",
+    "packageLocalPath": "C:\\ImageBuilder\\LibreOffice_7.6.3_Win_x86-64.msi",
+    "zipped": false,
+    "archiveLocalPath": "",
+    "appName": "LibreOffice",
+    "installationPath": "C:\\Program Files\\LibreOffice\\program\\scalc.exe",
+    "appType": "msi",
+    "arguments": "/qb /I C:\\ImageBuilder\\LibreOffice_7.6.3_Win_x86-64.msi REGISTER_ALL_MSO_TYPES=1 UI_LANGS=en_US VC_REDIST=0 ALLUSERS=1 REBOOTYESNO=No QUICKSTART=0"
+}

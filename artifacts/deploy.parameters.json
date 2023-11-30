@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "avd-imageTemplate-30112023-1131"
+        },
+        "location": {
+            "value": "norwayeast"
+        },
+        "userMsiName": {
+            "value": "imagefactory-prod-uai"
+        },
+        "tags": {
+            "value": {
+                "environment": "Prod"
+            }
+        },
+        "vmSize": {
+            "value": "Standard_D8s_v5"
+        },
+        "buildTimeoutInMinutes": {
+            "value": 0
+        },
+        "osDiskSizeGB": {
+            "value": 128
+        },
+        "userMsiResourceGroup": {
+            "value": "imagefactory-prod-rg"
+        },
+        "userAssignedIdentities": {
+            "value": [
+                "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai"
+            ]
+        },
+        "sigImageDefinitionId": {
+            "value": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourceGroups/imagefactory-prod-rg/providers/Microsoft.Compute/galleries/imagefactoryacg/images/avd-win11-23h2"
+        },
+        "sigImageVersion": {
+            "value": ""
+        },
+        "storageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "excludeFromLatest": {
+            "value": false
+        },
+        "imageReplicationRegions": {
+            "value": [
+                "norwayeast"
+            ]
+        }
+    }
+}

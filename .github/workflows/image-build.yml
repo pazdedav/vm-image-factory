@@ -1,0 +1,72 @@
+name: Build Custom Image
+
+on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - "artifacts/**"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ARM_TENANT_ID: ${{ vars.AZ_TENANT_ID }}
+  LOCATION: 'norwayeast'
+  ASSETS_STORAGE_ACCOUNT: 'imgfactoryassets'
+  RESOURCE_GROUP_NAME: 'imagefactory-prod-rg'
+  AZURE_STORAGE_CONTAINER: 'scripts'
+  IMAGE_TEMPLATE_NAME: 'AVDImageTemplate-${{ github.run_number }}'
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azure/login@v1
+        name: Sign in to Azure
+        with:
+          client-id: ${{ vars.AZ_CLIENT_ID }}
+          tenant-id: ${{ vars.ISP_AZ_TENANT_ID }}
+          subscription-id: ${{ vars.AZ_SUBSCRIPTION_ID }}
+
+      # Uploads all PS1 files to scripts container in Assets storage account
+      - name: Upload script artefacts
+        run: |
+          az storage blob upload-batch \
+            --account-name ${{ env.ASSETS_STORAGE_ACCOUNT }} \
+            --destination ${{ env.AZURE_STORAGE_CONTAINER }} \
+            --source ./artifacts \
+            --overwrite true
+        env:
+            AZURE_STORAGE_AUTH_MODE: login
+
+      # Deploys Image Template
+      - uses: azure/arm-deploy@v1
+        id: deploy
+        name: Deploy Image Template
+        with:
+          failOnStdErr: false
+          deploymentName: ImageFactory-${{ github.run_number }}
+          scope: resourcegroup
+          resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
+          subscriptionId: ${{ vars.AZ_SUBSCRIPTION_ID }}
+          template: ./artifacts/deploy.bicep
+          parameters: ./artifacts/deploy.parameters.json name=${{ env.IMAGE_TEMPLATE_NAME }}
+
+      # Write template id output
+      - name: Get Image Template output
+        run: |
+          echo "Image Template ID: ${{ steps.deploy.outputs.imageTemplateId }}"
+
+      # Trigger image builder to run, will not wait for process to complete
+      - name: Trigger image build with invoke-action
+        run: |
+         az resource invoke-action \
+           --action Run \
+           --name ${{ env.IMAGE_TEMPLATE_NAME }} \
+           --resource-type Microsoft.VirtualMachineImages/imageTemplates \
+           --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
+           --no-wait

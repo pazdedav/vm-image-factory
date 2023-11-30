@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "https://imgfactoryassets.blob.core.windows.net/archives/Wireshark-4.2.0-x64.exe",
+    "packageLocalPath": "C:\\ImageBuilder\\Wireshark-4.2.0-x64.exe",
+    "zipped": false,
+    "archiveLocalPath": "",
+    "appName": "Wireshark",
+    "installationPath": "C:\\Program Files\\Wireshark\\Wireshark.exe",
+    "appType": "exe",
+    "arguments": "/NCRC /S /desktopicon=yes /quicklaunchicon=no"
+}

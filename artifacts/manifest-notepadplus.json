@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "https://imgfactoryassets.blob.core.windows.net/archives/npp.8.6.Installer.x64.exe",
+    "packageLocalPath": "C:\\ImageBuilder\\npp.8.6.Installer.x64.exe",
+    "zipped": false,
+    "archiveLocalPath": "",
+    "appName": "NotePad++",
+    "installationPath": "C:\\Program Files\\Notepad++\\notepad++.exe",
+    "appType": "exe",
+    "arguments": "/S /NCRC"
+}
