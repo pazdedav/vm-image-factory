@@ -29,7 +29,7 @@ jobs:
         name: Sign in to Azure
         with:
           client-id: ${{ vars.AZ_CLIENT_ID }}
-          tenant-id: ${{ vars.ISP_AZ_TENANT_ID }}
+          tenant-id: ${{ vars.AZ_TENANT_ID }}
           subscription-id: ${{ vars.AZ_SUBSCRIPTION_ID }}
 
       # Uploads all PS1 files to scripts container in Assets storage account
