@@ -75,6 +75,9 @@ if ($Zipped) {
         Write-Log "Error extracting $AppName - $ErrorMessage"
     }
 }
+elseif ($AppType -eq 'winget') {
+    Write-Log "Skipping download for $AppName"
+}
 else {
     try {
         # AZCopy to download the archive file and save to the ImageBuilder directory
@@ -93,6 +96,34 @@ $ProgressPreference = 'SilentlyContinue'
 if ($AppType -eq 'msi') {
     try {
         Start-Process -FilePath msiexec.exe -Wait -ErrorAction Stop -ArgumentList $Arguments
+    }
+    catch {
+        $ErrorMessage = $_.Exception.message
+        Write-Log "Error installing $AppName - $ErrorMessage"
+    }
+}
+elseif ($AppType -eq 'winget') {
+    try {
+
+        $ResolveWingetPath = Resolve-Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe"
+        if ($ResolveWingetPath) {
+            $WingetPath = $ResolveWingetPath[-1].Path
+        }
+        Set-Location $wingetpath
+        
+        $App = winget search $PackagePath --exact
+            if ([String]::Join("", $App).Contains($PackagePath)) {
+                # MS Store apps
+                if ($null -ne $Arguments) {
+                    cmd.exe /c "winget.exe install --exact --silent --accept-package-agreements --accept-source-agreements $PackagePath --source $Arguments --force"
+                    # winget install --exact --silent --accept-package-agreements --accept-source-agreements $PackagePath --source $Arguments
+                }
+                # All other Apps
+                else {
+                    cmd.exe /c "winget.exe install --exact --silent --accept-package-agreements --accept-source-agreements $PackagePath --source winget --force"
+                    # winget install --exact --silent --scope machine --accept-package-agreements --accept-source-agreements $PackagePath
+                }
+            }
     }
     catch {
         $ErrorMessage = $_.Exception.message
@@ -123,7 +154,7 @@ else {
 #endregion
 
 #region Validate the installation path
-try {
+<# try {
     if (Test-Path $InstallationPath) {
         Write-Log "$AppName installed"
     }
@@ -135,6 +166,5 @@ catch {
     $ErrorMessage = $_.Exception.message
     Write-Log "Error installing $AppName - $ErrorMessage"
 }
-$ProgressPreference = 'Continue'
+$ProgressPreference = 'Continue' #>
 #endregion
-
