@@ -1,0 +1,11 @@
+{
+    "uami": "/subscriptions/xxxxx-xxxx-xxxxxx-xxxxx-xxxxx/resourcegroups/imagefactory-prod-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/imagefactory-prod-uai",
+    "packagePath": "XPDP273C0XHQH2",
+    "packageLocalPath": "",
+    "zipped": false,
+    "archiveLocalPath": "",
+    "appName": "Adobe Reader",
+    "installationPath": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe",
+    "appType": "winget",
+    "arguments": "msstore"
+}
